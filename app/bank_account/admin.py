@@ -1,8 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from django.db.models import Window, Sum, F
-from django.db.models.functions import Lead
 
 
 from .models import Account, Transaction
