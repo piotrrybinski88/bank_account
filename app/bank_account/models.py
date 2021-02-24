@@ -27,7 +27,6 @@ class Account(models.Model):
         choices=CURRENCY,
         default='PLN',
     )
-    # transaction = models.OneToOneField
     date_created = models.DateTimeField(
         _('Date when account was created'),
         auto_now_add=True,
