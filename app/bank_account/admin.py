@@ -4,7 +4,9 @@ from .models import Account, Transaction
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('id', 'account_number', 'currency', 'date_created', 'admin_balance')
+    list_display = (
+        'id', 'account_number', 'currency', 'date_created', 'admin_balance', 'account_owner'
+    )
     readonly_fields = ('account_number', 'currency', 'date_created', 'admin_balance', 'balance')
 
     def admin_balance(self, obj):
