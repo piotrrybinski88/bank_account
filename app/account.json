@@ -1,0 +1,13 @@
+[
+  {
+    "model": "bank_account.account",
+    "pk": 1,
+    "fields": {
+      "account_number": "88931560553146739920007424",
+      "currency": "PLN",
+      "account_owner": "Piotr R",
+      "date_created": "2021-01-25T19:07:13.540Z",
+      "balance": "0"
+    }
+  }
+]

@@ -45,6 +45,9 @@ class Account(models.Model):
         return self.account_number
 
 
+DEFAULT_ACCOUNT = 1
+
+
 class Transaction(models.Model):
     class Meta:
         verbose_name = "Transaction"
@@ -59,7 +62,11 @@ class Transaction(models.Model):
         decimal_places=2,
         default=0
     )
-    account = models.ForeignKey(Account, on_delete=models.PROTECT)
+    account = models.ForeignKey(
+        Account,
+        on_delete=models.PROTECT,
+        default=DEFAULT_ACCOUNT
+    )
 
 
 class Profile(AbstractUser):
