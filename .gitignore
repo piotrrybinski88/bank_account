@@ -22,3 +22,5 @@ postgres_data
 
 # Production Dockerfile
 Dockerfile.prod
+
+.idea
