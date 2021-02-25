@@ -1,0 +1,26 @@
+[
+    {
+    "model": "bank_account.transaction",
+    "pk": 1,
+    "fields": {
+      "amount": 20,
+      "date_of_transaction": "2021-01-07T20:07:13.540Z"
+    }
+  },
+  {
+    "model": "bank_account.transaction",
+    "pk": 2,
+    "fields": {
+      "amount": 10,
+      "date_of_transaction": "2021-01-25T19:10:13.540Z"
+    }
+  },
+  {
+    "model": "bank_account.transaction",
+    "pk": 3,
+    "fields": {
+      "amount": 5,
+      "date_of_transaction": "2021-01-25T19:15:13.540Z"
+    }
+  }
+]

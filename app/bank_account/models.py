@@ -17,7 +17,9 @@ class Account(models.Model):
 
     account_number = models.CharField(
         _('number of Your bank account'),
-        validators=[RegexValidator(regex='^\d{26}$', message='Length has to be 26', code='nomatch')],
+        validators=[
+            RegexValidator(regex='^\d{26}$', message='Length has to be 26', code='nomatch')
+        ],
         default=''.join(choices(digits, k=26)),
         max_length=26
     )
@@ -31,28 +33,40 @@ class Account(models.Model):
         _('Date when account was created'),
         auto_now_add=True,
     )
-    account_owner = models.CharField(_('Name of account_owner'), max_length=12)
+    account_owner = models.CharField(_('Owner of account'), max_length=12)
+    balance = models.DecimalField(
+        _('Money balance on account'),
+        default=0,
+        max_digits=6,
+        decimal_places=2
+    )
 
     def __str__(self):
         return self.account_number
 
 
-class Transaction(models.Model):
+DEFAULT_ACCOUNT = 1
 
+
+class Transaction(models.Model):
     class Meta:
-        verbose_name = "Transactions"
+        verbose_name = "Transaction"
 
     date_of_transaction = models.DateTimeField(
         _('Date of banking transaction'),
         auto_now_add=True
     )
     amount = models.DecimalField(
-        _('Amount of transaction'),
+        _('Amount of transaction in PLN'),
         max_digits=6,
         decimal_places=2,
         default=0
     )
-    account = models.ForeignKey(Account, on_delete=models.PROTECT)
+    account = models.ForeignKey(
+        Account,
+        on_delete=models.PROTECT,
+        default=DEFAULT_ACCOUNT
+    )
 
 
 class Profile(AbstractUser):
