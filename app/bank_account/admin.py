@@ -1,16 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
-
-
 from .models import Account, Transaction
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('account_number', 'currency', 'date_created', 'balance')
-    readonly_fields = ('account_number', 'currency', 'date_created')
+    list_display = ('id', 'account_number', 'currency', 'date_created', 'admin_balance')
+    readonly_fields = ('account_number', 'currency', 'date_created', 'admin_balance', 'balance')
 
-    def balance(self, obj):
+    def admin_balance(self, obj):
         all_account_transaction = Transaction.objects.filter(
             account__account_number=obj.account_number
         ).all()
@@ -19,6 +16,12 @@ class AccountAdmin(admin.ModelAdmin):
 
 class TransactionAdmin(admin.ModelAdmin):
     list_display = ('amount', 'date_of_transaction', 'account')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(Account, AccountAdmin)

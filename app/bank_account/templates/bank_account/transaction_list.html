@@ -1,0 +1,9 @@
+{%  for transaction in transactions %}
+    <p>Transaction Account </p>
+    <p> {{ transaction.account }}</p>
+
+    <p>Amount {{ transaction.amount }}</p>
+
+    <p>Date of transaction {{ transaction.date_of_transaction }}</p>
+    <p>-------------------------</p>
+{% endfor %}
