@@ -19,3 +19,6 @@ db.sqlite3-journal
 
 # Postgres volume
 postgres_data
+
+# Production Dockerfile
+Dockerfile.prod

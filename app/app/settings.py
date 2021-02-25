@@ -81,12 +81,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": config("SQL_ENGINE"),
-        "NAME": config("SQL_DATABASE"),
-        "USER": config("SQL_USER", default="postgres"),
-        "PASSWORD": config("SQL_PASSWORD", default="postgres"),
-        "HOST": config("SQL_HOST", default="localhost"),
-        "PORT": config("SQL_PORT", default="5432"),
+        "ENGINE": config("DB_ENGINE"),
+        "NAME": config("DB_DATABASE"),
+        "USER": config("DB_USER", default="postgres"),
+        "PASSWORD": config("DB_PASSWORD", default="postgres"),
+        "HOST": config("DB_HOST", default="localhost"),
+        "PORT": config("DB_PORT", default="5432"),
     }
 }
 
