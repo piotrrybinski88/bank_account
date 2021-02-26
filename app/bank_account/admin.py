@@ -5,15 +5,9 @@ from .models import Account, Transaction
 
 class AccountAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'account_number', 'currency', 'date_created', 'admin_balance', 'account_owner'
+        'id', 'account_number', 'currency', 'date_created', 'account_owner', 'balance'
     )
-    readonly_fields = ('account_number', 'currency', 'date_created', 'admin_balance', 'balance')
-
-    def admin_balance(self, obj):
-        all_account_transaction = Transaction.objects.filter(
-            account__account_number=obj.account_number
-        ).all()
-        return sum([transaction.amount for transaction in all_account_transaction])
+    readonly_fields = ('account_number', 'currency', 'date_created', 'balance')
 
 
 class TransactionAdmin(admin.ModelAdmin):

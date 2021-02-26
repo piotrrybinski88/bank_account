@@ -1,10 +1,12 @@
 from random import choices
 from string import digits
-from django.db import models
+from decimal import Decimal
 
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from django.db.models import F, Sum
 
 
 class Account(models.Model):
@@ -34,12 +36,18 @@ class Account(models.Model):
         auto_now_add=True,
     )
     account_owner = models.CharField(_('Owner of account'), max_length=12)
-    balance = models.DecimalField(
-        _('Money balance on account'),
-        default=0,
-        max_digits=6,
-        decimal_places=2
-    )
+    # balance = models.DecimalField(
+    #     _('Money balance on account'),
+    #     default=0,
+    #     max_digits=6,
+    #     decimal_places=2
+    # )
+
+    @property
+    def balance(self):
+        return self.transaction_set.aggregate(
+            balance2=Sum(F('amount'))
+        )['balance2'] or Decimal(0)
 
     def __str__(self):
         return self.account_number
