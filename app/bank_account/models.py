@@ -23,7 +23,8 @@ class Account(models.Model):
             RegexValidator(regex='^\d{26}$', message='Length has to be 26', code='nomatch')
         ],
         default=''.join(choices(digits, k=26)),
-        max_length=26
+        max_length=26,
+        unique=True
     )
     currency = models.CharField(
         _('currency'),
@@ -36,12 +37,6 @@ class Account(models.Model):
         auto_now_add=True,
     )
     account_owner = models.CharField(_('Owner of account'), max_length=12)
-    # balance = models.DecimalField(
-    #     _('Money balance on account'),
-    #     default=0,
-    #     max_digits=6,
-    #     decimal_places=2
-    # )
 
     @property
     def balance(self):
